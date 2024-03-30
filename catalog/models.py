@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import date
+
 
 class Category(models.Model):
     name = models.CharField(max_length=25, verbose_name='Название')
