@@ -59,7 +59,7 @@ class Command(BaseCommand):
                 'description': 'Как она сюда попала?',
                 'preview': 'media/Violin.png',
                 'category': 5,
-                'price': 12345678
+                'price': 32767
             },
             {
                 'name': 'Труба',

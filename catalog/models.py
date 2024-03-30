@@ -18,7 +18,7 @@ class Product(models.Model):
     description = models.TextField(blank=True, null=True, verbose_name='Описание')
     preview = models.ImageField(blank=True, null=True, verbose_name='Превью')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, verbose_name='Категория')
-    price = models.SmallIntegerField(verbose_name='Цена')
+    price = models.IntegerField(verbose_name='Цена')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
 
