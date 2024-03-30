@@ -19,7 +19,6 @@ class Product(models.Model):
     preview = models.ImageField(blank=True, null=True, verbose_name='Превью')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, verbose_name='Категория')
     price = models.SmallIntegerField(verbose_name='Цена')
-    manufactured_at = models.DateField(default=date(year=2024, month=1, day=1), verbose_name='Дата производства')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
 
