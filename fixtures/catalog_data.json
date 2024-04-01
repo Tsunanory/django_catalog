@@ -45,7 +45,7 @@
     "fields": {
       "name": "Виолончель",
       "description": "Как она сюда попала?",
-      "preview": "Violin.jpg",
+      "preview": "products/Violin.jpg",
       "category": 5,
       "price": 32767,
       "created_at": "2024-03-30T16:07:49.214Z",
@@ -58,7 +58,7 @@
     "fields": {
       "name": "Лопата",
       "description": "Копает нормально",
-      "preview": "shovel_AA5Db2J.jpg",
+      "preview": "products/shovel_AA5Db2J.jpg",
       "category": 4,
       "price": 999,
       "created_at": "2024-03-30T16:09:29.419Z",
@@ -71,7 +71,7 @@
     "fields": {
       "name": "Ноутбук",
       "description": "Их мы тоже продаем",
-      "preview": "Notebook.jpg",
+      "preview": "products/Notebook.jpg",
       "category": 3,
       "price": 99999,
       "created_at": "2024-03-30T16:11:47.355Z",
@@ -84,7 +84,7 @@
     "fields": {
       "name": "Пылесос",
       "description": "Полезный, нужный",
-      "preview": "vacuum_8hvGlKi.jpg",
+      "preview": "products/vacuum_8hvGlKi.jpg",
       "category": 2,
       "price": 9999,
       "created_at": "2024-03-30T16:12:22.386Z",
@@ -97,7 +97,7 @@
     "fields": {
       "name": "Труба",
       "description": "Разные диаметры есть",
-      "preview": "Pipe.jpg",
+      "preview": "productsPipe.jpg",
       "category": 1,
       "price": 998,
       "created_at": "2024-03-30T16:12:54.681Z",
