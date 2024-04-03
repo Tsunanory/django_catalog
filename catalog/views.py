@@ -12,3 +12,5 @@ def product_page(request, id):
                        'price': Product.objects.get(pk=id).price,
                        'preview': Product.objects.get(pk=id).preview})
 
+def contact(request):
+    return render(request, 'catalog/contact.html')
