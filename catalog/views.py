@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from catalog.models import *
+from catalog.models import Product, Category
 
 
 def product_page(request, id):
     context = {'product': Product.objects.get(pk=id).name,
-                'description': Product.objects.get(pk=id).description,
-                'price': Product.objects.get(pk=id).price,
-                'preview': Product.objects.get(pk=id).preview,
+               'description': Product.objects.get(pk=id).description,
+               'price': Product.objects.get(pk=id).price,
+               'preview': Product.objects.get(pk=id).preview,
                }
     if not id:
         return render(request, 'catalog/index.html')
