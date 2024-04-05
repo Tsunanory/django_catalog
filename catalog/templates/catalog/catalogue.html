@@ -1,4 +1,5 @@
 {% extends 'catalog/base.html' %}
+{% load my_tags %}
 
 {% block content %}
 <div class="row text-center">
@@ -12,9 +13,14 @@
                 <h1 class="card-title pricing-card-title">{{ product.price }}$</h1>
                 <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                     <li style="text-align: center;">{{ product.description|truncatechars:100 }}</li>
-                    <li style="text-align: center;"><img src="{{ product.preview.url }}" alt="Product image"></li>
+                    <li style="text-align: center;">
+                        <img
+                                src="{{ product.preview|mymedia }}"
+                                alt="Product image">
+                    </li>
+
                 </ul>
-                <a href="{% url 'catalog:product_page' product.id %}">
+                <a href="{% url 'product_page' product.id %}">
                     <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
                 </a>
             </div>
