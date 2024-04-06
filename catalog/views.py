@@ -1,17 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from catalog.models import Product, Category
 
 
 def product_page(request, id):
-    context = {'product': Product.objects.get(pk=id).name,
-               'description': Product.objects.get(pk=id).description,
-               'price': Product.objects.get(pk=id).price,
-               'preview': Product.objects.get(pk=id).preview,
+    # prod = Product.objects.get(pk=id)
+    prod = get_object_or_404(Product, pk=id)
+    context = {'product': prod.name,
+               'description': prod.description,
+               'category': prod.category,
+               'price': prod.price,
+               'preview': prod.preview,
                }
-    if not id:
-        return render(request, 'catalog/index.html')
-    else:
-        return render(request, 'catalog/index.html', context)
+    return render(request, 'catalog/index.html', context)
 
 
 def catalogue(request):
