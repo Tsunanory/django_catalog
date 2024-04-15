@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import CreateView
+
 from catalog.models import Product, Category
 
 
@@ -24,3 +26,6 @@ def catalogue(request):
 
 def contacts(request):
     return render(request, 'catalog/contacts.html')
+
+class PostCreateView(CreateView):
+    ...
