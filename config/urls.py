@@ -18,12 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-
-from catalog.views import contacts, product_page
+from catalog.views import contacts
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('contacts/', contacts, name='contacts'),
     path('', include('catalog.urls')),
-    path('product/<int:id>', product_page, name='product_page'),
+    path('product/<int:pk>', include('catalog.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
