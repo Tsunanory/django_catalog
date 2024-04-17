@@ -25,4 +25,6 @@ urlpatterns = [
     path('contacts/', ContactsTemplateView.as_view(), name='contacts'),
     path('', include('catalog.urls')),
     path('product/<int:pk>', include('catalog.urls')),
+    path('blog/', include('blog.urls')),
+    path('edit/', include('blog.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
