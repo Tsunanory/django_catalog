@@ -7,6 +7,7 @@
 </div>
 <div class="row text-center">
     {% for object in object_list %}
+<!--    {% if object.is_posted %}-->
     <div class="col-6">
         <div class="card mb-4 box-shadow">
             <div class="card-body">
@@ -23,9 +24,10 @@
                            class="btn btn-sm btn-outline-danger">Delete</a>
                     </div>
                 </div>
-            </p>
+                </p>
+            </div>
         </div>
+<!--        {% endif %}-->
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
-{% endblock %}
+    {% endblock %}
