@@ -29,6 +29,9 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
