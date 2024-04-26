@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 
 from catalog.models import Product, Version
 
@@ -14,12 +15,22 @@ class FormStyleMixin:
 
 
 class ProductForm(FormStyleMixin, forms.ModelForm):
-
     class Meta:
         model = Product
         # fields = '__all__'
-        fields = ('name', 'description', 'price', )
+        fields = ('name', 'description', 'preview', 'price',)
         # exclude = ('preview', 'created_at', 'updated_at')
+
+    def clean_name(self):
+        cleaned_data = self.cleaned_data['name']
+        restricted = ['казино', 'криптовалюта', 'крипта', 'биржа',
+                      'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
+
+        for word in restricted:
+            if word in cleaned_data:
+                raise forms.ValidationError('Название не должно содержать запрещенные слова!')
+
+        return cleaned_data
 
     def clean_description(self):
         cleaned_data = self.cleaned_data['description']
@@ -32,9 +43,17 @@ class ProductForm(FormStyleMixin, forms.ModelForm):
 
         return cleaned_data
 
+    def clean_image(self):
+        image = self.cleaned_data.get('image', False)
+        if image:
+            if image.size > 4 * 1024 * 1024:
+                raise ValidationError("Image file too large ( > 4mb )")
+            # return image
+        else:
+            raise ValidationError("Couldn't read uploaded image")
+
 
 class VersionForm(FormStyleMixin, forms.ModelForm):
-
     class Meta:
         model = Version
         fields = '__all__'

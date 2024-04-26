@@ -9,10 +9,9 @@
                 <h4 class="my-0 font-weight-normal">{{ category }}</h4>
             </div>
             <div class="card-body">
-                <h1 class="card-title pricing-card-title">{{ price }}$</h1>
-
+                <h1 class="card-title pricing-card-title">{{ object.price }}$</h1>
                 <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                    <li style="text-align: center;">{{ description }}</li>
+                    <li style="text-align: center;">{{ object.description }}</li>
                     <li style="text-align: center;"><img src="{{ product.preview.url }}" alt="Product image"></li>
                 </ul>
                 <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
