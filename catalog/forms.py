@@ -43,12 +43,12 @@ class ProductForm(FormStyleMixin, forms.ModelForm):
 
         return cleaned_data
 
-    def clean_image(self):
-        image = self.cleaned_data.get('image', False)
-        if image:
-            if image.size > 4 * 1024 * 1024:
+    def clean_preview(self):
+        preview = self.cleaned_data.get('preview', False)
+        if preview:
+            if preview.size > 2 * 1024 * 1024:
                 raise ValidationError("Image file too large ( > 4mb )")
-            # return image
+            return preview
         else:
             raise ValidationError("Couldn't read uploaded image")
 
