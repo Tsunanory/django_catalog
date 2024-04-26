@@ -22,11 +22,11 @@
 
                 </li>
                 <li>
-                    {% if current_version %}
-                    {{ 'Actual version' }}
-                    {% else %}
-                    {{ ' ' }}
+                    {% for version in actual_versions %}
+                    {% if version.product == product %}
+                    Актуальная версия №{{ version.number }} - {{ version.name }}
                     {% endif %}
+                    {% endfor %}
                 </li>
 
             </ul>
