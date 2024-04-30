@@ -22,7 +22,7 @@ from catalog.views import ContactsTemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),
+    path('users/', include('users.urls', namespace='users')),
     path('contacts/', ContactsTemplateView.as_view(), name='contacts'),
     path('', include('catalog.urls', namespace='catalog')),
     path('product/<int:pk>', include('catalog.urls')),
