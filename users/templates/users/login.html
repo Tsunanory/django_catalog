@@ -15,12 +15,9 @@
                         {{ form.as_p }}
                     </div>
                     <button type="submit" class="btn btn-success">
-                        {% if object %}
-                        Сохранить
-                        {% else %}
                         Войти
-                        {% endif %}
                     </button>
+                    <a class="btn btn-outline-primary" href="{% url 'users:registration' %}">Регистрация</a>
                 </div>
             </div>
         </div>
