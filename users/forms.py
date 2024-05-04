@@ -23,16 +23,7 @@ class UserRegisterForm(FormStyleMixin, UserCreationForm):
         strip=False,
         help_text=_("Повторно введите выбранный пароль"),
     )
-    # R45678uyt
-    # username = forms.CharField(label=_("Почта"))
-    # password = forms.CharField(label=_("Пароль"), widget=forms.PasswordInput)
 
 
-# class CustomUserCreationForm(UserCreationForm):
-#     email = forms.EmailField(label=_('почта'), required=True)
-#     class Meta:
-#         models = User
-#         field
-
-    # password = forms.CharField(label=_("Пароль"), widget=forms.PasswordInput)
-    # confirm_password = forms.CharField(label=_("Подтверждение пароля"), widget=forms.PasswordInput)
+class RecoveryForm(forms.Form, FormStyleMixin):
+    email = forms.EmailField(label="Email")

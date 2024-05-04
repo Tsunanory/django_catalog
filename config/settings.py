@@ -144,7 +144,7 @@ LOGOUT_REDIRECT_URL = '/'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = "tsunanori@yandex.ru"
-EMAIL_HOST_PASSWORD = "vmcqepcutcsgffsj"
+EMAIL_HOST_PASSWORD = "mdduwavtcdjjskyv"
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
