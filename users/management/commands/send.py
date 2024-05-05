@@ -6,8 +6,10 @@ from config.settings import DEFAULT_FROM_EMAIL
 class Command(BaseCommand):
     def handle(self, *args, **options):
         send_mail(
-            subject='test',
-            message='test',
+            subject="Восстановление пароля",
+            message=f"Ваш пароль от сайта Shop изменен:\n"
+                    f"Email:"
+                    f"Пароль:",
             from_email=DEFAULT_FROM_EMAIL,
             recipient_list=['ivan.sklyaruk47@bk.ru']
         )

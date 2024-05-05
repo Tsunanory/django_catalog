@@ -10,7 +10,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView
 
-from config.settings import EMAIL_HOST_USER
+from config.settings import EMAIL_HOST_USER, DEFAULT_FROM_EMAIL
 from users.forms import UserRegisterForm, RecoveryForm
 from users.models import User
 
@@ -64,7 +64,7 @@ class UserResetPasswordView(PasswordResetView):
                     message=f"Ваш пароль от сайта Shop изменен:\n"
                             f"Email: {email}\n"
                             f"Пароль: {password}",
-                    from_email=EMAIL_HOST_USER,
+                    from_email=DEFAULT_FROM_EMAIL,
                     recipient_list=[user.email]
                 )
                 return HttpResponseRedirect(reverse('users:login'))
