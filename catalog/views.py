@@ -20,8 +20,8 @@ class ProductListView(ListView):
         return context
 
 
-class ProductDetailView(DetailView):
-    model = Product
+class ProductDetailView(DetailView): # У нас все-так интернет магазин,
+    model = Product                  # кнопку покупки убирать от незалогиненного юзера - неправильно
     template_name = 'catalog/product.html'
 
 

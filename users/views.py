@@ -5,7 +5,7 @@ import string
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.views import PasswordResetView
 from django.core.mail import send_mail
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, request
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView
@@ -51,23 +51,23 @@ class UserResetPasswordView(PasswordResetView):
     success_url = reverse_lazy('users:login')
 
     def form_valid(self, form):
-        if self.request.method == 'POST':
-            email = self.request.POST['email']
-            try:
-                user = User.objects.get(email=email)
-                character = string.ascii_letters + string.digits
-                password = "".join(secrets.choice(character) for i in range(12))
-                user.set_password(password)
-                user.save()
-                send_mail(
-                    subject="Восстановление пароля",
-                    message=f"Ваш пароль от сайта Shop изменен:\n"
-                            f"Email: {email}\n"
-                            f"Пароль: {password}",
-                    from_email=DEFAULT_FROM_EMAIL,
-                    recipient_list=[user.email]
-                )
-                return HttpResponseRedirect(reverse('users:login'))
-            except User.DoesNotExist:
-                return self.render_to_response('users:register')
-        return super().form_valid(form)
+        email = form.cleaned_data['email']
+        user_exists = User.objects.filter(email=email).exists()
+        if user_exists:
+            user = User.objects.get(email=email)
+            character = string.ascii_letters + string.digits
+            password = "".join(secrets.choice(character) for i in range(12))
+            user.set_password(password)
+            user.save()
+            send_mail(
+                subject="Восстановление пароля",
+                message=f"Ваш пароль от сайта Shop изменен:\n"
+                        f"Email: {email}\n"
+                        f"Пароль: {password}",
+                from_email=DEFAULT_FROM_EMAIL,
+                recipient_list=[user.email]
+            )
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return HttpResponseRedirect(reverse('users:registration'))
+
