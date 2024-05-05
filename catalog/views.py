@@ -20,7 +20,7 @@ class ProductListView(ListView):
         return context
 
 
-class ProductDetailView(LoginRequiredMixin, DetailView):
+class ProductDetailView(DetailView):
     model = Product
     template_name = 'catalog/product.html'
 
