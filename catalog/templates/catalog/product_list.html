@@ -35,12 +35,12 @@
             <div class="btn-group">
                 <a href="{% url 'catalog:product_page' product.id %}" type="button"
                    class="btn btn-lg btn-block btn-outline-primary">Купить</a>
-                {% if user.is_authenticated %}
+                {% if perms.catalog.can_change_description and perms.catalog.set_published or user.id == product.salesman_id %}
                 <a href="{% url 'catalog:update_product' product.id %}" type="button"
                    class="btn btn-lg btn-block btn-outline-primary">Изменить</a>
+                {% endif %}
                 <a href="{% url 'catalog:delete_product' product.id %}" type="button"
                    class="btn btn-lg btn-block btn-outline-primary">Удалить</a>
-                {% endif %}
             </div>
         </div>
     </div>

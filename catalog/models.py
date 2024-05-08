@@ -24,11 +24,22 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
     salesman = models.ForeignKey(User, verbose_name='Продавец', blank=True, null=True, on_delete=models.SET_NULL)
+    is_published = models.BooleanField(default=False, verbose_name='Опубликовано')
 
     def __str__(self):
         return f'{self.name} {self.category}'
 
     class Meta:
+        permissions = [
+            (
+                'set_published',
+                'Can publish продукт'
+            ),
+            (
+                'can_change_description',
+                'Can change description'
+            )
+        ]
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
 

@@ -51,6 +51,23 @@ class ProductForm(FormStyleMixin, forms.ModelForm):
             raise ValidationError("Couldn't read uploaded image")
 
 
+class ProductModeratorForm(FormStyleMixin, forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ('description', 'category')
+
+    def clean_description(self):
+        cleaned_data = self.cleaned_data['description']
+        restricted = ['казино', 'криптовалюта', 'крипта', 'биржа',
+                      'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
+
+        for word in restricted:
+            if word in cleaned_data:
+                raise forms.ValidationError('Описание не должно содержать запрещенные слова!')
+
+        return cleaned_data
+
+
 class VersionForm(FormStyleMixin, forms.ModelForm):
     class Meta:
         model = Version
