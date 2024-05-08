@@ -72,7 +72,7 @@ class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
 
     def get_form_class(self):
         user = self.request.user
-        if user.id == self.object.salesman_id:
+        if user == self.object.salesman:
             return ProductForm
         if user.has_perm('catalog.can_change_description') and user.has_perm('catalog.change_category'):
             return ProductModeratorForm
