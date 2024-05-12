@@ -44,7 +44,7 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
     model = Product
     success_url = reverse_lazy('catalog:product_list')
 
@@ -68,14 +68,13 @@ class ProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView)
         else:
             return self.render_to_response(self.get_context_data(form=form, formset=formset))
 
-    def has_permission(self):
-        obj = self.get_object()
-        perms = ('catalog.can_change_description', 'catalog.change_category', 'catalog.set_published')
-        return self.request.user.has_perms(perms) or self.request.user == obj.salesman
-
     def get_form_class(self):
         user = self.request.user
-        return ProductModeratorForm
+        if user == self.object.salesman:
+            return ProductForm
+        if user.has_perm('catalog.set_published'):
+            return ProductModeratorForm
+        raise PermissionDenied
 
 
 class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):

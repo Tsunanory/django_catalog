@@ -32,12 +32,12 @@ class Product(models.Model):
     class Meta:
         permissions = [
             (
-                'set_published',
-                'Can publish продукт'
+                'can_publish_продукт',
+                'can_publish_продукт'
             ),
             (
                 'can_change_description',
-                'Can change description'
+                'can change description'
             )
         ]
         verbose_name = 'продукт'
