@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
 from catalog.models import Product, Version
 from catalog.forms import ProductForm, VersionForm, ProductModeratorForm
+from catalog.services import get_products_from_cache
 
 
 class ProductListView(ListView):
@@ -19,6 +20,9 @@ class ProductListView(ListView):
             actual_versions.append(current_version)
         context['actual_versions'] = actual_versions
         return context
+
+    def get_queryset(self):
+        return get_products_from_cache()
 
 
 class ProductDetailView(DetailView): # У нас все-так интернет магазин,

@@ -21,3 +21,4 @@ traitlets==5.14.2
 wcwidth==0.2.13
 pytils
 redis==5.0.4
+ python-dotenv==1.0.1
